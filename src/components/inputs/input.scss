@@ -1,0 +1,17 @@
+@import "src/styles/variables";
+
+.custom-input {
+  box-shadow: 0 0 22px rgba(0, 0, 0, 0.15);
+  border-radius: 100vmax;
+  overflow: hidden;
+  display: inline-block;
+  width: 100%;
+
+  input {
+    height: 100%;
+    padding: 10px 25px;
+    font-size: 24px;
+    font-weight: bold;
+    color: $primary;
+  }
+}
