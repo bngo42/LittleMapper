@@ -11,9 +11,9 @@ const AdressForm = () => {
       <h1 className="description">Indiquez votre itinéraire</h1>
 
       <div className="inputs-container">
-        <Input type={ InputType.Text }/>
+        <Input type={ InputType.Text } placeholder="Départ"/>
         <FontAwesomeIcon className="middle-arrow" icon={ faArrowRight }/>
-        <Input type={ InputType.Text }/>
+        <Input type={ InputType.Text } placeholder="Arrivé"/>
       </div>
     </div>
   );

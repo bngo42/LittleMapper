@@ -4,4 +4,5 @@ export enum InputType {
 
 export interface InputProps {
   type: InputType;
+  placeholder?: string;
 }

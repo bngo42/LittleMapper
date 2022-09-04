@@ -4,7 +4,7 @@ import './input.scss';
 const Input = (props: InputProps) => {
   return (
     <div className="custom-input">
-      <input type={ props.type }/>
+      <input type={ props.type } placeholder={ props.placeholder }/>
     </div>
   );
 }
