@@ -1,0 +1,12 @@
+@import 'src/styles/variables';
+
+header {
+  display: flex;
+  padding: 25px 0;
+
+  .logo {
+    font-weight: bold;
+    color: $primary;
+    font-size: 24pt;
+  }
+}
