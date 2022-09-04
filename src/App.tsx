@@ -1,4 +1,8 @@
+import {Route, Routes, Navigate} from "react-router-dom";
+
 import Header from 'components/header/header';
+import AdressForm from "components/pages/AdressForm/adress-form";
+
 import './App.scss';
 
 const App = () => {
@@ -6,8 +10,11 @@ const App = () => {
     <div className="wrapper">
       <Header/>
 
-      <div className="content">
-
+      <div className="main-content">
+        <Routes>
+          <Route path="/" element={ <AdressForm/> }/>
+          <Route path="*" element={ <Navigate replace to="/" /> }/>
+        </Routes>
       </div>
     </div>
   );

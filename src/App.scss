@@ -2,7 +2,8 @@
   width: 100%;
   max-width: 1024px;
   margin: 0 auto;
-  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
 
   .main-content {
     margin-top: 10px;
