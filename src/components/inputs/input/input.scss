@@ -6,10 +6,12 @@
   overflow: hidden;
   display: inline-block;
   width: 100%;
+  padding: 0 25px;
 
   input {
     height: 100%;
-    padding: 10px 25px;
+    width: 100%;
+    padding: 10px 0;
     font-size: 24px;
     font-weight: bold;
     color: $primary;

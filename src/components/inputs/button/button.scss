@@ -1,0 +1,27 @@
+@import 'src/styles/variables';
+
+.custom-button {
+  background-color: $primary;
+  color: white;
+  font-weight: bold;
+  padding: 10px 15px;
+  font-size: 24px;
+  border-radius: 100vmax;
+  cursor: pointer;
+  box-shadow: 0 0 22px rgba(0, 0, 0, 0.15);
+
+  &:hover {
+    color: $primary;
+    background-color: white;
+  }
+
+  &:active {
+    background-color: lightgrey;
+  }
+
+  &:disabled {
+    background-color: lightgrey;
+    color: rgba(0, 0, 0, 0.5);
+    cursor: not-allowed;
+  }
+}
