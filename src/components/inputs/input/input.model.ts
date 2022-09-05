@@ -5,5 +5,6 @@ export enum InputType {
 export interface InputProps {
   type: InputType;
   placeholder?: string;
-  onValueChange?: () => any;
+  onValueChange?: (val: any) => any;
+  value?: any;
 }

@@ -8,7 +8,10 @@ const Input = ({
 }: InputProps) => {
   return (
     <div className="custom-input">
-      <input type={ type } placeholder={ placeholder } onChange={ onValueChange }/>
+      <input
+        type={ type }
+        placeholder={ placeholder }
+        onChange={ e => onValueChange(e.target.value) }/>
     </div>
   );
 }
