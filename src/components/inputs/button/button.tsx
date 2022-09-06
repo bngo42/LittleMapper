@@ -4,10 +4,12 @@ import './button.scss';
 const Button = ({
   click = () => undefined,
   disabled = false,
-  children = null
+  children = null,
 }: ButtonProps) => {
   const handleClick = () => {
-    click();
+    if (!disabled) {
+      click();
+    }
   };
 
   return (

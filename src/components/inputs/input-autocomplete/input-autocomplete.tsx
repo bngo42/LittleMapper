@@ -11,7 +11,8 @@ const InputAutocomplete = ({
   placeholder = '',
   onInputValueChange = () => {},
   autocomplete = [],
-  onAutocompleteValuePicked = (item: any) => {}
+  onAutocompleteValuePicked = (item: any) => {},
+  bindPath = 'label'
 }: InputAutocompleteProps) => {
   const listRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -24,13 +25,16 @@ const InputAutocomplete = ({
 
   const selectItem = (item: any) => {
     onAutocompleteValuePicked(item);
-    setCurrentValue(item);
+    setCurrentValue(item[bindPath]);
     setIsOpen(false);
   };
 
   const handleInputValueChange = (value: string) => {
     setCurrentValue(value);
     onInputValueChange(value);
+    if (!value) {
+      onAutocompleteValuePicked(null);
+    }
   };
 
   useEffect(() => setIsOpen(!!autocomplete.length), [autocomplete]);
@@ -53,7 +57,7 @@ const InputAutocomplete = ({
                 key={key}
                 className="autocomplete-list-item"
                 onClick={ () => selectItem(item) }>
-                {item}
+                { item[bindPath] }
             </button>
             ))
           }
