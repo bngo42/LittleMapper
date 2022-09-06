@@ -3,8 +3,10 @@ export enum InputType {
 }
 
 export interface InputProps {
-  type: InputType;
+  type?: InputType;
   placeholder?: string;
-  onValueChange?: (val: any) => any;
+  onInputValueChange?: (val: any) => any;
   value?: any;
+  onBlur?: (e: any) => void;
+  onFocus?: (e: any) => void;
 }
