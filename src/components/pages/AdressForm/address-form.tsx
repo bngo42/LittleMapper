@@ -6,6 +6,7 @@ import {faArrowRight} from "@fortawesome/free-solid-svg-icons";
 import {LocationPointType} from "./address-form.model";
 import {debounce} from "utilities/utility";
 import {getCoordinatesFromAddress} from "services/location";
+import {getTransitionDirection} from "services/citymapper";
 
 import Button from "components/inputs/button/button";
 import InputAutocomplete from "components/inputs/input-autocomplete/input-autocomplete";
@@ -47,6 +48,15 @@ const AddressForm = () => {
       });
   };
 
+  const getInstruction = () => {
+    if (startLocation && endLocation) {
+      const startPoint = `${startLocation['lat']},${startLocation['lng']}`;
+      const endPoint = `${endLocation['lat']},${endLocation['lng']}`;
+
+      getTransitionDirection(startPoint, endPoint).then(console.log, console.error);
+    }
+  };
+
   return (
     <div className="address-form">
       <h1 className="description">Indiquez votre itinéraire</h1>
@@ -68,7 +78,7 @@ const AddressForm = () => {
       <div className="submit-btn">
         <Button
             disabled={isSubmitDisabled()}
-            click={ () => console.log(startLocation, endLocation) }>
+            click={ getInstruction }>
           En route !
         </Button>
       </div>

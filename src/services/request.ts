@@ -1,10 +1,10 @@
 type RequestMethod = 'GET' | 'POST';
 
 interface RequestConfig {
-  method: RequestMethod,
-  headers: any,
-  params?: any
-  body?: any
+  method: RequestMethod;
+  headers: any;
+  params?: any;
+  body?: any;
 }
 
 const fetchRequest = (url: string, options: RequestConfig) => fetch(url, options).then(res => res.json(), err => console.error(err));
@@ -13,7 +13,7 @@ const serialize = (params: any) => Object.keys(params).map(key => `${key}=${enco
 export const getRequest = (url: string, params: any, headers: any): Promise<any> => {
   const requestOptions: RequestConfig = {
     method: 'GET',
-    headers
+    headers,
   };
   const serializedParams = serialize(params);
   const newUrl = !!serializedParams ? `${ url }?${serializedParams}` : url;
@@ -25,7 +25,7 @@ export const postRequest = (url: string, body: any = {}, headers: any): Promise<
   const requestOptions: RequestConfig = {
     method: 'POST',
     headers,
-    body
+    body,
   };
   return fetchRequest(url, requestOptions);
 };
