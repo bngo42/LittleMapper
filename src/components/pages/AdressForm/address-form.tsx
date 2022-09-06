@@ -13,16 +13,24 @@ import InputAutocomplete from "components/inputs/input-autocomplete/input-autoco
 import './adress-form.scss';
 
 const AddressForm = () => {
-  const [ startAutocomplete, setStartAutocomplete ] = useState<string[]>([]);
-  const [ endAutocomplete, setEndAutocomplete ] = useState<string[]>([]);
+  const [ startAutocomplete, setStartAutocomplete ] = useState<any[]>([]);
+  const [ endAutocomplete, setEndAutocomplete ] = useState<any[]>([]);
+  const [ startLocation, setStartLocation ] = useState(null);
+  const [ endLocation, setEndLocation ] = useState(null);
 
-  const canSubmit = () => true;
+  const isSubmitDisabled = () => !startLocation || !endLocation;
   const getCoordinates = (address: string, type: LocationPointType) => {
       debounce(() => {
         if (!!address) {
           getCoordinatesFromAddress(address).then(res => {
-            const autocomplete = res.features.map(feature => feature.properties.label);
-
+            const autocomplete = res.features.map(feature => {
+              return {
+                id: feature.properties.id,
+                lng: feature.geometry.coordinates[0],
+                lat: feature.geometry.coordinates[1],
+                label: feature.properties.label
+              };
+            });
             if (type === LocationPointType.Start) {
               setStartAutocomplete(autocomplete);
             } else if (LocationPointType.End) {
@@ -47,17 +55,22 @@ const AddressForm = () => {
         <InputAutocomplete
           placeholder="Départ"
           onInputValueChange={val => getCoordinates(val, LocationPointType.Start)}
-          autocomplete={ startAutocomplete }/>
+          autocomplete={ startAutocomplete }
+          onAutocompleteValuePicked={ setStartLocation }/>
         <FontAwesomeIcon className="middle-arrow" icon={ faArrowRight }/>
         <InputAutocomplete
           placeholder="Arrivé"
           onInputValueChange={val => getCoordinates(val, LocationPointType.End)}
-          autocomplete={ endAutocomplete }/>
+          autocomplete={ endAutocomplete }
+          onAutocompleteValuePicked={ setEndLocation }/>
       </div>
 
-
       <div className="submit-btn">
-        <Button disabled={ canSubmit() }>En route !</Button>
+        <Button
+            disabled={isSubmitDisabled()}
+            click={ () => console.log(startLocation, endLocation) }>
+          En route !
+        </Button>
       </div>
     </div>
   );
