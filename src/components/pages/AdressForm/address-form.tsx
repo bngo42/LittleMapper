@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {useNavigate} from "react-router";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowRight} from "@fortawesome/free-solid-svg-icons";
@@ -6,7 +7,7 @@ import {faArrowRight} from "@fortawesome/free-solid-svg-icons";
 import {LocationPointType} from "./address-form.model";
 import {debounce} from "utilities/utility";
 import {getCoordinatesFromAddress} from "services/location";
-import {getTransitionDirection} from "services/citymapper";
+import {serialize} from "services/request";
 
 import Button from "components/inputs/button/button";
 import InputAutocomplete from "components/inputs/input-autocomplete/input-autocomplete";
@@ -14,6 +15,7 @@ import InputAutocomplete from "components/inputs/input-autocomplete/input-autoco
 import './adress-form.scss';
 
 const AddressForm = () => {
+  const navigate = useNavigate();
   const [ startAutocomplete, setStartAutocomplete ] = useState<any[]>([]);
   const [ endAutocomplete, setEndAutocomplete ] = useState<any[]>([]);
   const [ startLocation, setStartLocation ] = useState(null);
@@ -50,10 +52,17 @@ const AddressForm = () => {
 
   const getInstruction = () => {
     if (startLocation && endLocation) {
-      const startPoint = `${startLocation['lat']},${startLocation['lng']}`;
-      const endPoint = `${endLocation['lat']},${endLocation['lng']}`;
+      const startCoord = `${startLocation['lat']},${startLocation['lng']}`;
+      const endCoord = `${endLocation['lat']},${endLocation['lng']}`;
+      const params = {
+        'start-coord': startCoord,
+        'end-coord': endCoord,
+        'start-address': startLocation['label'],
+        'endAddress': endLocation['label']
+      };
+      const url = `/direction?${ serialize(params) }`;
 
-      getTransitionDirection(startPoint, endPoint).then(console.log, console.error);
+      navigate(url);
     }
   };
 

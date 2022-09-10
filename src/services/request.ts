@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const serialize = (params: any) => Object.keys(params)
+export const serialize = (params: any) => Object.keys(params)
                                     .map(key => `${key}=${encodeURIComponent(params[key])}`)
                                     .join('&');
 

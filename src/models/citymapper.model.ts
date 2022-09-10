@@ -1,12 +1,18 @@
 type DirectionTimeType = 'arrive' | 'depart' | 'depart_approximate';
-type DirectionTravelMode = 'walk' | 'transit' | 'self_piloted' | 'on_demand';
 type DirectionVehicleType = 'bike' | 'bus' | 'bus_rapid_transit' | 'car' | 'ebike' | 'escooter' |
 'ferry' | 'funicular' | 'gondola' | 'helicopter' | 'light_rail' | 'metro' | 'monorail' | 'motorscooter' |
 'rail' | 'subway' | 'streetcar' | 'tram' | 'trolley' | 'trolleybus';
 
+export enum DirectionTravelMode {
+  Walk = 'walk',
+  Transit = 'transit',
+  SelfPiloted = 'self_piloted',
+  OnDemand = 'on_demand'
+}
+
 export interface CM_DirectionApiResponse {
   routes: CM_DirectionRouteConfig[];
-  language: string;
+  language?: string;
 }
 
 interface CM_DirectionCoordinates {
@@ -20,7 +26,7 @@ interface CM_DirectionPrice {
   currency: string;
 }
 
-interface CM_DirectionLegsConfig {
+export interface CM_DirectionLegsConfig {
   travel_mode?: DirectionTravelMode;
   duration_seconds?: number;
   path?: string;
