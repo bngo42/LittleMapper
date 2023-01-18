@@ -38,19 +38,19 @@ const Direction = () => {
 
     setDirectionDesc(data);
     // Using hard data to avoid api usage
-    // getTransitionDirection(data["start-coord"], data["end-coord"]).then(
-    //   (res) => setDirectionData(res),
-    //   (err) => console.error(err)
-    // )
-    setDirectionData(example);
+    getTransitionDirection(data["start-coord"], data["end-coord"]).then(
+      (res) => setDirectionData(res),
+      (err) => console.error(err)
+    );
+    // setDirectionData(example);
   }, []);
 
-  const processTransitData = (data: CM_DirectionLegsConfig) => {
+  const processTransitData = (data: CM_DirectionLegsConfig, nextLegData: CM_DirectionLegsConfig) => {
     switch (data.travel_mode) {
       case DirectionTravelMode.Walk:
-        return <TravelWalk/>;
+        return <TravelWalk data={ data } nextData={ nextLegData }/>;
       case DirectionTravelMode.Transit:
-        return <TravelTransit/>;
+        return <TravelTransit data={ data }/>;
       default:
         return 'No data';
     }
@@ -71,8 +71,8 @@ const Direction = () => {
 
       <div className="direction-body">
         {
-          directionData?.routes[0]?.legs.map((legData, index) => {
-            return <div key={index}>{ processTransitData(legData) }</div>
+          directionData?.routes[0]?.legs.map((legData, index, arr) => {
+            return <div key={index}>{ processTransitData(legData, arr[index + 1]) }</div>
           })
         }
       </div>

@@ -1,0 +1,31 @@
+.travel-transit {
+  white-space: nowrap;
+  height: 50px;
+  position: relative;
+
+  .transit-top {
+    display: flex;
+    align-items: center;
+
+    .transit-label {
+      display: flex;
+      align-items: center;
+      height: 30px;
+
+      .stop-name {
+        margin-left: 5px;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .travel-line {
+    border-bottom-style: solid;
+    border-bottom-color: grey;
+
+    &:before {
+      border-style: solid;
+      border-color: grey;
+    }
+  }
+}

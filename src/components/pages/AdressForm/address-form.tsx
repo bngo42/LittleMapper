@@ -58,7 +58,7 @@ const AddressForm = () => {
         'start-coord': startCoord,
         'end-coord': endCoord,
         'start-address': startLocation['label'],
-        'endAddress': endLocation['label']
+        'end-address': endLocation['label']
       };
       const url = `/direction?${ serialize(params) }`;
 

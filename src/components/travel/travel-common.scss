@@ -1,0 +1,32 @@
+.transit {
+  min-width: 350px;
+  max-width: 500px;
+}
+
+.travel-duration {
+  margin-left: 5px;
+  font-size: 10pt;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.travel-line {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin-top: 10px;
+  border-bottom-width: 4px;
+
+  &:before {
+    position: absolute;
+    content: '';
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: white;
+    border-width: 2px;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+  }
+}

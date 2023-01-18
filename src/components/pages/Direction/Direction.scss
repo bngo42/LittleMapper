@@ -17,4 +17,13 @@
       }
     }
   }
+
+  .direction-body {
+    display: flex;
+    align-items: center;
+    padding: 25px 150px;
+    height: 50%;
+    overflow-x: auto;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent);
+  }
 }
